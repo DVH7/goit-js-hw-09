@@ -23,7 +23,7 @@ function onSubmitForm(evt) {
     delay += Number(formEl.step.value);
   }
 }
-
+console.log(i)
 // Create promise
 function createPromise(position, delay) {
   const obj = { position, delay };

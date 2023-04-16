@@ -33,18 +33,21 @@ btnStartEl.addEventListener('click', onBtnStart);
 flatpickr(imputDatePickerEl, options);
 
 window.addEventListener('keydown', evt => {
-  if (evt.code === 'Escape' && timerId) {
+  if ((evt.code === 'Escape' && timerId) ) {
     clearInterval(timerId);
 
     imputDatePickerEl.removeAttribute('disabled');
-    btnStartEl.setAttribute('disabled', true);
+    btnStartEl.removeAttribute('disabled');
 
     secondsEl.textContent = '00';
     minutesEl.textContent = '00';
     hoursEl.textContent = '00';
     daysEl.textContent = '00';
+    
   }
-});
+}
+
+);
 
 
 function onBtnStart() {
@@ -64,6 +67,7 @@ function currentDifferenceDate(selectedDates) {
 
   renderDate(formatDate);
   btnStartEl.removeAttribute('disabled');
+  
 }
 
 
@@ -77,6 +81,10 @@ function startTimer() {
     Notify.success('Time end');
     clearInterval(timerId);
 
+   imputDatePickerEl.removeAttribute('disabled');
+   
+
+
   } else {
     formatDate = convertMs(timeDifference);
     renderDate(formatDate);
@@ -89,4 +97,5 @@ function renderDate(formatDate) {
   minutesEl.textContent = formatDate.minutes;
   hoursEl.textContent = formatDate.hours;
   daysEl.textContent = formatDate.days;
+   
 }
